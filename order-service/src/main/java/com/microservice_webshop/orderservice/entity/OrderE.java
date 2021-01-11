@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -19,7 +17,9 @@ public class OrderE {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long orderId;
-    private Long productId;
-    private Integer quantityOrdered;
     private Long customerId;
+    private Double total;
+    @OneToMany(cascade = {CascadeType.ALL})
+    private Set<Basket> basket;
+
 }
